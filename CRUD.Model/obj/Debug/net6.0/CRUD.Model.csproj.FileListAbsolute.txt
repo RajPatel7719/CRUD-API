@@ -1,0 +1,14 @@
+G:\Training\ASP.NET CORE MVC\API\CRUD.Model\bin\Debug\net6.0\CRUD.Model.deps.json
+G:\Training\ASP.NET CORE MVC\API\CRUD.Model\bin\Debug\net6.0\CRUD.Model.runtimeconfig.json
+G:\Training\ASP.NET CORE MVC\API\CRUD.Model\bin\Debug\net6.0\CRUD.Model.dll
+G:\Training\ASP.NET CORE MVC\API\CRUD.Model\bin\Debug\net6.0\CRUD.Model.pdb
+G:\Training\ASP.NET CORE MVC\API\CRUD.Model\obj\Debug\net6.0\CRUD.Model.csproj.AssemblyReference.cache
+G:\Training\ASP.NET CORE MVC\API\CRUD.Model\obj\Debug\net6.0\CRUD.Model.GeneratedMSBuildEditorConfig.editorconfig
+G:\Training\ASP.NET CORE MVC\API\CRUD.Model\obj\Debug\net6.0\CRUD.Model.AssemblyInfoInputs.cache
+G:\Training\ASP.NET CORE MVC\API\CRUD.Model\obj\Debug\net6.0\CRUD.Model.AssemblyInfo.cs
+G:\Training\ASP.NET CORE MVC\API\CRUD.Model\obj\Debug\net6.0\CRUD.Model.csproj.CoreCompileInputs.cache
+G:\Training\ASP.NET CORE MVC\API\CRUD.Model\obj\Debug\net6.0\CRUD.Model.dll
+G:\Training\ASP.NET CORE MVC\API\CRUD.Model\obj\Debug\net6.0\refint\CRUD.Model.dll
+G:\Training\ASP.NET CORE MVC\API\CRUD.Model\obj\Debug\net6.0\CRUD.Model.pdb
+G:\Training\ASP.NET CORE MVC\API\CRUD.Model\obj\Debug\net6.0\CRUD.Model.genruntimeconfig.cache
+G:\Training\ASP.NET CORE MVC\API\CRUD.Model\obj\Debug\net6.0\ref\CRUD.Model.dll

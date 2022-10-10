@@ -1,0 +1,15 @@
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\bin\Debug\net6.0\CRUD.DataAccess.deps.json
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\bin\Debug\net6.0\CRUD.DataAccess.dll
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\bin\Debug\net6.0\CRUD.DataAccess.pdb
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\bin\Debug\net6.0\CRUD.Model.dll
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\bin\Debug\net6.0\CRUD.Model.pdb
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\CRUD.DataAccess.csproj.AssemblyReference.cache
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\CRUD.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\CRUD.DataAccess.AssemblyInfoInputs.cache
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\CRUD.DataAccess.AssemblyInfo.cs
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\CRUD.DataAccess.csproj.CoreCompileInputs.cache
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\CRUD.DataAccess.csproj.CopyComplete
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\CRUD.DataAccess.dll
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\refint\CRUD.DataAccess.dll
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\CRUD.DataAccess.pdb
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\ref\CRUD.DataAccess.dll
