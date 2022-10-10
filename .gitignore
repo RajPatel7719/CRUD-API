@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/CRUD.BusinessLogic/bin/Debug/net6.0
+/CRUD.BusinessLogic/obj
+/CRUD.DataAccess/bin/Debug/net6.0
+/CRUD.DataAccess/obj
+/CRUD.Model/bin/Debug/net6.0
+/CRUD.Model/obj
+/CRUD_API/.vs/CRUD_API
+/CRUD_API/bin/Debug/net6.0
+/CRUD_API/obj
