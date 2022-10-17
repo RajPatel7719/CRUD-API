@@ -11,8 +11,8 @@ namespace CRUD.BusinessLogic.IRepository
     {
         public IEnumerable<User1>? GetUsers();
         public User1 GetUserByID(int? id);
-        public void AddOrUpdateUser(User1 user1);
-        public Task DeleteUser(int id);
+        public int AddOrUpdateUser(User1 user);
+        public int DeleteUser(int id);
 
         public IEnumerable<User1> SortUserData(string sortField, string? currentSortField, string currentSortOrder);
     }

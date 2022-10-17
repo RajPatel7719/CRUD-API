@@ -101,25 +101,43 @@ namespace CRUD.BusinessLogic.Repository
             }
         }
 
-        public void AddOrUpdateUser(User1 user1)
+        public int AddOrUpdateUser(User1 user)
         {
-            if (user1.Id > 0)
+            int result = 0;
+            if (user.Id > 0)
             {
-                _userDBContext.Users1.Update(user1);
+                var results = _userDBContext.Users1.Update(user);
+                if (results.State.ToString() == "Modified")
+                {
+                    result = 1;
+                }
             }
             else
             {
-                _userDBContext.Users1.Add(user1);
+                var results = _userDBContext.Users1.Add(user);
+                if (results.State.ToString() == "Added")
+                {
+                    result = 1;
+                }
             }
             _userDBContext.SaveChanges();
+            return result;
         }
 
-        public Task DeleteUser(int id)
+        public int DeleteUser(int id)
         {
+            int result = 0;
             var user = GetUserByID(id);
-            _userDBContext.Users1.Remove(user);
+            if (user != null)
+            {
+                var results = _userDBContext.Users1.Remove(user);
+                if (results.State.ToString() == "Deleted")
+                {
+                    result = 1;
+                }
+            }
             _userDBContext.SaveChanges();
-            return Task.CompletedTask;
+            return result;
         }
     }
 }

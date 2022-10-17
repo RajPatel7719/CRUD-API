@@ -17,15 +17,19 @@ namespace CRUD_API.Controllers
         }
 
         [HttpGet(Name = "GetUsers")]
-        public IEnumerable<User1>? GetUsers()
+        public IActionResult GetUsers()
         {
+            ApiResponse<IEnumerable<User1>> response = new();
             try
             {
-                return _userRepository.GetUsers();
+                response.Result=  _userRepository.GetUsers();
+                response.StatusCode = StatusCodes.Status200OK;
+                return Ok(response);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                response.StatusCode = StatusCodes.Status203NonAuthoritative;
+                return Ok(ex.Message);
             }
         }
 
@@ -43,42 +47,73 @@ namespace CRUD_API.Controllers
         }
 
         [HttpGet(Name = "GetUserByID")]
-        public User1 GetUserByID(int? id)
+        public IActionResult GetUserByID(int? id)
         {
+            ApiResponse<User1> response = new();
             try
             {
-                return _userRepository.GetUserByID(id);
+                response.Result = _userRepository.GetUserByID(id);
+                response.StatusCode = StatusCodes.Status200OK;
+                return Ok(response);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                response.ErrorMessage = ex.Message;
+                return Ok(response);
             }
         }
 
         [HttpPost(Name = "AddOrUpdateUser")]
-        public void AddOrUpdateUser([FromBody] User1 user1)
+        public IActionResult AddOrUpdateUser([FromBody] User1 user1)
         {
+            ApiResponse<object> response = new();
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _userRepository.AddOrUpdateUser(user1);
+                    int result = _userRepository.AddOrUpdateUser(user1);
+                    if (result != 1)
+                    {
+                        response.ErrorMessage = "Error";
+                        response.StatusCode = StatusCodes.Status404NotFound;
+                        response.Result = new();
+                    }
+                    else
+                    {
+                        response.ErrorMessage = "SUCCESS";
+                        response.StatusCode = StatusCodes.Status200OK;
+                        response.Result = new();
+                    }
                 }
                 catch (Exception)
                 {
                     throw;
                 }
             }
+            return Ok(response);
         }
 
         [HttpGet(Name = "DeleteUser")] 
-        public Task DeleteUser(int id)
+        public IActionResult DeleteUser(int id)
         {
+            ApiResponse<object> response = new();
             if (id.ToString() != null)
             {
-                _userRepository.DeleteUser(id);
+                int result = _userRepository.DeleteUser(id);
+                if (result != 1)
+                {
+                    response.ErrorMessage = "Error";
+                    response.StatusCode = StatusCodes.Status404NotFound;
+                    response.Result = new();
+                }
+                else
+                {
+                    response.ErrorMessage = "SUCCESS";
+                    response.StatusCode = StatusCodes.Status200OK;
+                    response.Result = new();
+                }
             }
-            return Task.CompletedTask;
+            return Ok(response);
         }
     }
 }
