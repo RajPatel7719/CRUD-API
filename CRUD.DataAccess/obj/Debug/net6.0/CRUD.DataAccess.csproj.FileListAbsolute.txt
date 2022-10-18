@@ -1,4 +1,5 @@
 G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\bin\Debug\net6.0\CRUD.DataAccess.deps.json
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\bin\Debug\net6.0\CRUD.DataAccess.runtimeconfig.json
 G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\bin\Debug\net6.0\CRUD.DataAccess.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\bin\Debug\net6.0\CRUD.DataAccess.pdb
 G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\bin\Debug\net6.0\CRUD.Model.dll
@@ -12,4 +13,5 @@ G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\CRUD.DataAcces
 G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\CRUD.DataAccess.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\refint\CRUD.DataAccess.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\CRUD.DataAccess.pdb
+G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\CRUD.DataAccess.genruntimeconfig.cache
 G:\Training\ASP.NET CORE MVC\API\CRUD.DataAccess\obj\Debug\net6.0\ref\CRUD.DataAccess.dll

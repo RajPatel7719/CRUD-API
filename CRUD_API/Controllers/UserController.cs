@@ -1,11 +1,12 @@
 ﻿using CRUD.BusinessLogic.IRepository;
 using CRUD.DataAccess;
 using CRUD.Model.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CRUD_API.Controllers
 {
-    [ApiController]
+    [ApiController, Authorize]
     [Route("api/[controller]/[action]")]
     public class UserController : ControllerBase
     {
