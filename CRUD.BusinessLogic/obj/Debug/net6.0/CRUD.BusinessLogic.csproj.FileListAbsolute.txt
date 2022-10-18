@@ -1,4 +1,5 @@
 G:\Training\ASP.NET CORE MVC\API\CRUD.BusinessLogic\bin\Debug\net6.0\CRUD.BusinessLogic.deps.json
+G:\Training\ASP.NET CORE MVC\API\CRUD.BusinessLogic\bin\Debug\net6.0\CRUD.BusinessLogic.runtimeconfig.json
 G:\Training\ASP.NET CORE MVC\API\CRUD.BusinessLogic\bin\Debug\net6.0\CRUD.BusinessLogic.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD.BusinessLogic\bin\Debug\net6.0\CRUD.BusinessLogic.pdb
 G:\Training\ASP.NET CORE MVC\API\CRUD.BusinessLogic\bin\Debug\net6.0\CRUD.DataAccess.dll
@@ -14,4 +15,5 @@ G:\Training\ASP.NET CORE MVC\API\CRUD.BusinessLogic\obj\Debug\net6.0\CRUD.Busine
 G:\Training\ASP.NET CORE MVC\API\CRUD.BusinessLogic\obj\Debug\net6.0\CRUD.BusinessLogic.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD.BusinessLogic\obj\Debug\net6.0\refint\CRUD.BusinessLogic.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD.BusinessLogic\obj\Debug\net6.0\CRUD.BusinessLogic.pdb
+G:\Training\ASP.NET CORE MVC\API\CRUD.BusinessLogic\obj\Debug\net6.0\CRUD.BusinessLogic.genruntimeconfig.cache
 G:\Training\ASP.NET CORE MVC\API\CRUD.BusinessLogic\obj\Debug\net6.0\ref\CRUD.BusinessLogic.dll

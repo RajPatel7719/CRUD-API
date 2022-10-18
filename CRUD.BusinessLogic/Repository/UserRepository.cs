@@ -2,10 +2,7 @@
 using CRUD.DataAccess;
 using CRUD.Model.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Globalization;
-using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
-using System.Security.Claims;
 
 namespace CRUD.BusinessLogic.Repository
 {
