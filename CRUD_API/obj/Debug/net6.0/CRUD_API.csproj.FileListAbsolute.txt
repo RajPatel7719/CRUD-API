@@ -5,6 +5,7 @@ G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\CRUD_API.deps.json
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\CRUD_API.runtimeconfig.json
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\CRUD_API.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\CRUD_API.pdb
+G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Humanizer.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -12,6 +13,7 @@ G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Microsoft.AspNetCore.
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
@@ -61,6 +63,8 @@ G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\CRUD_API.AssemblyInfo
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\CRUD_API.csproj.CoreCompileInputs.cache
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\CRUD_API.MvcApplicationPartsAssemblyInfo.cs
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\CRUD_API.MvcApplicationPartsAssemblyInfo.cache
+G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\CRUD_API.RazorAssemblyInfo.cache
+G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\CRUD_API.RazorAssemblyInfo.cs
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\staticwebassets.build.json
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\staticwebassets.development.json
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\scopedcss\bundle\CRUD_API.styles.css
@@ -70,5 +74,3 @@ G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\refint\CRUD_API.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\CRUD_API.pdb
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\CRUD_API.genruntimeconfig.cache
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\ref\CRUD_API.dll
-G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Humanizer.dll
-G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll

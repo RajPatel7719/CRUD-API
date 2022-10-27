@@ -40,6 +40,22 @@ namespace CRUD_API.Controllers
             var result = await _userManager.CreateAsync(user, register.Password);
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Register { Status = "Error", Message = "User Creation Faield, Please Try Again." });
+            
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var token = code.Replace("/", "%2F").Replace("+", "%2B").Replace("=", "%3D");
+
+            //var confirmationLink = Url.Action("ConfirmEmail", "Email", new { token, email = user.Email }, Request.Scheme);
+            var confirmationLink = Url.Action("ConfirmEmail", "Email", new { userId = user.Email, code = token }, protocol: Request.Scheme);
+
+            EmailHelper emailHelper = new EmailHelper();
+            bool emailResponse = emailHelper.SendEmail(user.Email, token);
+
+            if (emailResponse)
+                new Register { Status = "Success", Message = "User Created Successfully...!" };
+            else
+            {
+                // log email failed 
+            }
             return Ok(new Register { Status = "Success", Message = "User Created Successfully...!" });
         }
 
@@ -49,6 +65,15 @@ namespace CRUD_API.Controllers
             var user = await _userManager.FindByNameAsync(login.UserName);
             if (user != null && await _userManager.CheckPasswordAsync(user, login.Password))
             {
+                bool emailStatus = await _userManager.IsEmailConfirmedAsync(user);
+                if (emailStatus == false)
+                {
+                    return Ok(new Login
+                    {
+                        Status = "Error",
+                        Message = "Email is unconfirmed, please confirm it first"
+                    });
+                }
                 var userRoles = await _userManager.GetRolesAsync(user);
 
                 var authClaims = new List<Claim>
@@ -111,6 +136,36 @@ namespace CRUD_API.Controllers
             }
 
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+            ApiResponse<object> response = new();
+            AppUser user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                IdentityResult result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    response.ErrorMessage = "SUCCESS";
+                    response.StatusCode = StatusCodes.Status200OK;
+                    response.Result = new();
+                }
+                else
+                {
+                    response.ErrorMessage = "Error";
+                    response.StatusCode = StatusCodes.Status500InternalServerError;
+                    response.Result = new();
+                }
+            }
+            else
+            {
+                response.ErrorMessage = "User Not Found";
+                response.StatusCode = StatusCodes.Status404NotFound;
+                response.Result = new();
+            }
+            return Ok(response);
         }
     }
 }

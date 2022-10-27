@@ -14,3 +14,11 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = G:\Training\ASP.NET CORE MVC\API\CRUD_API
 build_property._RazorSourceGeneratorDebug = 
+
+[G:/Training/ASP.NET CORE MVC/API/CRUD_API/Views/Email/ConfirmEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1haWxcQ29uZmlybUVtYWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Training/ASP.NET CORE MVC/API/CRUD_API/Views/Email/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1haWxcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
