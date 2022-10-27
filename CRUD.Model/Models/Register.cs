@@ -14,5 +14,7 @@ namespace CRUD.Model.Models
 
         [Required(ErrorMessage = "Password Is Required")]
         public string Password { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
+        public string Message { get; set; } = string.Empty;
     }
 }

@@ -30,7 +30,7 @@ namespace CRUD_API.Controllers
         {
             var userExist = await _userManager.FindByNameAsync(register.UserName);
             if (userExist != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User Already Exist." });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Register { Status = "Error", Message = "User Already Exist." });
             AppUser user = new AppUser()
             {
                 UserName = register.UserName,
@@ -39,8 +39,8 @@ namespace CRUD_API.Controllers
             };
             var result = await _userManager.CreateAsync(user, register.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User Creation Faield, Please Try Again." });
-            return Ok(new Response { Status = "Success", Message = "User Created Successfully...!" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Register { Status = "Error", Message = "User Creation Faield, Please Try Again." });
+            return Ok(new Register { Status = "Success", Message = "User Created Successfully...!" });
         }
 
         [HttpPost(Name = "Login")]
