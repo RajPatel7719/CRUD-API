@@ -54,7 +54,8 @@ builder.Services.AddDbContext<UserDBContext>(options =>
 });
 
 // Add services to the container.
-
+builder.Services.AddSingleton<UserContext>();
+builder.Services.AddTransient<IUserRepositoryAsync, UserRepositoryAsync>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 // For Identity 

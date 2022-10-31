@@ -11,26 +11,29 @@ namespace CRUD_API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUserRepositoryAsync _userRepositoryAsync;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserRepository userRepository, IUserRepositoryAsync userRepositoryAsync)
         {
             _userRepository = userRepository;
+            _userRepositoryAsync = userRepositoryAsync;
         }
 
         [HttpGet(Name = "GetUsers")]
-        public IActionResult GetUsers()
+        public async Task<IActionResult> GetUsers()
         {
             ApiResponse<IEnumerable<User1>> response = new();
             try
             {
-                response.Result=  _userRepository.GetUsers();
+                response.Result= await _userRepositoryAsync.GetAllUsersAsync();
                 response.StatusCode = StatusCodes.Status200OK;
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                response.StatusCode = StatusCodes.Status203NonAuthoritative;
-                return Ok(ex.Message);
+                response.StatusCode = StatusCodes.Status500InternalServerError;
+                response.ErrorMessage = ex.Message;
+                return Ok(response);
             }
         }
 
@@ -48,12 +51,12 @@ namespace CRUD_API.Controllers
         }
 
         [HttpGet(Name = "GetUserByID")]
-        public IActionResult GetUserByID(int? id)
+        public async Task<IActionResult> GetUserByID(int id)
         {
             ApiResponse<User1> response = new();
             try
             {
-                response.Result = _userRepository.GetUserByID(id);
+                response.Result = await _userRepositoryAsync.GetUserByIdAsync(id);
                 response.StatusCode = StatusCodes.Status200OK;
                 return Ok(response);
             }

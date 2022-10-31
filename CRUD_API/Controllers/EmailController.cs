@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CRUD_API.Controllers
 {
@@ -22,8 +23,8 @@ namespace CRUD_API.Controllers
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
                 return Ok(new Response { Message = "User Not Found", Status = "Error" });
-
-            var result = await _userManager.ConfirmEmailAsync(user, token);
+            var code = Base64UrlEncoder.Decode(token);
+            var result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
                 return Ok(new Response { Message = "ConfirmEmail", Status = "Success" });

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -42,10 +43,8 @@ namespace CRUD_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new Register { Status = "Error", Message = "User Creation Faield, Please Try Again." });
             
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            var token = code.Replace("/", "%2F").Replace("+", "%2B").Replace("=", "%3D");
-
-            //var confirmationLink = Url.Action("ConfirmEmail", "Email", new { token, email = user.Email }, Request.Scheme);
-            var confirmationLink = Url.Action("ConfirmEmail", "Email", new { userId = user.Email, code = token }, protocol: Request.Scheme);
+            //var token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            var token = Base64UrlEncoder.Encode(code);
 
             EmailHelper emailHelper = new EmailHelper();
             bool emailResponse = emailHelper.SendEmail(user.Email, token);
