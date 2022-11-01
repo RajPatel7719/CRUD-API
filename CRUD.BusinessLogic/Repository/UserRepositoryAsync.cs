@@ -94,5 +94,18 @@ namespace CRUD.BusinessLogic.Repository
                 await conn.ExecuteAsync(query, parameters);
             }
         }
+
+        public async Task CreateUserLoginAsync(UserLogin user)
+        {
+            var procedure = "RegisterUser"; 
+            var parameter = new DynamicParameters();
+            parameter.Add("Email", user.Email, DbType.String, ParameterDirection.Input);
+            parameter.Add("Pass", user.Password, DbType.String, ParameterDirection.Input);
+
+            using (var conn = _userContext.CreateConnection())
+            {
+                await conn.ExecuteAsync(procedure, parameter, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }

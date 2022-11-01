@@ -25,7 +25,7 @@ namespace CRUD_API.Controllers
             ApiResponse<IEnumerable<User1>> response = new();
             try
             {
-                response.Result= await _userRepositoryAsync.GetAllUsersAsync();
+                response.Result = await _userRepositoryAsync.GetAllUsersAsync();
                 response.StatusCode = StatusCodes.Status200OK;
                 return Ok(response);
             }
@@ -97,7 +97,7 @@ namespace CRUD_API.Controllers
             return Ok(response);
         }
 
-        [HttpGet(Name = "DeleteUser")] 
+        [HttpGet(Name = "DeleteUser")]
         public IActionResult DeleteUser(int id)
         {
             ApiResponse<object> response = new();
@@ -118,6 +118,14 @@ namespace CRUD_API.Controllers
                 }
             }
             return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateUserLogin(UserLogin userLogin)
+        {
+            await _userRepositoryAsync.CreateUserLoginAsync(userLogin);
+
+            return Ok();
         }
     }
 }

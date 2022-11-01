@@ -14,5 +14,6 @@ namespace CRUD.BusinessLogic.IRepository
         Task<User1> CreateUserAsync(User1 user);
         Task UpdateUserAsync(int id, User1 user);
         Task DeleteUserByIdAsync(int id);
+        Task CreateUserLoginAsync(UserLogin user);
     }
 }
