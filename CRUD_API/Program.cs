@@ -46,6 +46,9 @@ builder.Services.AddSwaggerGen(options => {
     });
 });
 
+//Add Auto Mapper Service
+builder.Services.AddAutoMapper(typeof(Program));
+
 //Entity Framework
 builder.Services.AddDbContext<UserDBContext>(options =>
 {

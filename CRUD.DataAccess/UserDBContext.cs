@@ -29,17 +29,14 @@ namespace CRUD.DataAccess
 
                 entity.Property(e => e.FirstName)
                     .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("First Name");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.LastName)
                     .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("Last Name");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.PhoneNumber)
                     .HasMaxLength(15)
-                    .HasColumnName("Phone Number")
                     .IsFixedLength();
             });
 
