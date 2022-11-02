@@ -1,6 +1,8 @@
-﻿using CRUD.BusinessLogic.IRepository;
+﻿using AutoMapper;
+using CRUD.BusinessLogic.IRepository;
 using CRUD.DataAccess;
 using CRUD.Model.Models;
+using CRUD.Model.ModelsDTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,11 +14,13 @@ namespace CRUD_API.Controllers
     {
         private readonly IUserRepository _userRepository;
         private readonly IUserRepositoryAsync _userRepositoryAsync;
+        private readonly IMapper _mapper;
 
-        public UserController(IUserRepository userRepository, IUserRepositoryAsync userRepositoryAsync)
+        public UserController(IUserRepository userRepository, IUserRepositoryAsync userRepositoryAsync, IMapper mapper)
         {
             _userRepository = userRepository;
             _userRepositoryAsync = userRepositoryAsync;
+            _mapper = mapper;
         }
 
         [HttpGet(Name = "GetUsers")]
@@ -126,6 +130,45 @@ namespace CRUD_API.Controllers
             await _userRepositoryAsync.CreateUserLoginAsync(userLogin);
 
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetUsersByMapper()
+        {
+            var users = await _userRepositoryAsync.GetAllUsersAsync();
+            var mappedUser = _mapper.Map<IEnumerable<UserDTO>>(users);
+            return Ok(mappedUser);
+        }
+
+        [HttpPost]
+        public IActionResult AddOrUpdateUserByMapper([FromBody] UserDTO user)
+        {
+            ApiResponse<object> response = new();
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var mappedUser = _mapper.Map<User1>(user);
+                    int result = _userRepository.AddOrUpdateUser(mappedUser);
+                    if (result != 1)
+                    {
+                        response.ErrorMessage = "Error";
+                        response.StatusCode = StatusCodes.Status404NotFound;
+                        response.Result = new();
+                    }
+                    else
+                    {
+                        response.ErrorMessage = "SUCCESS";
+                        response.StatusCode = StatusCodes.Status200OK;
+                        response.Result = new();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return Ok(response);
         }
     }
 }

@@ -5,6 +5,9 @@ G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\CRUD_API.deps.json
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\CRUD_API.runtimeconfig.json
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\CRUD_API.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\CRUD_API.pdb
+G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\AutoMapper.dll
+G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Dapper.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Humanizer.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
@@ -74,4 +77,3 @@ G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\refint\CRUD_API.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\CRUD_API.pdb
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\CRUD_API.genruntimeconfig.cache
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\ref\CRUD_API.dll
-G:\Training\ASP.NET CORE MVC\API\CRUD_API\bin\Debug\net6.0\Dapper.dll
