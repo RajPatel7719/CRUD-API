@@ -107,5 +107,32 @@ namespace CRUD.BusinessLogic.Repository
                 await conn.ExecuteAsync(procedure, parameter, commandType: CommandType.StoredProcedure);
             }
         }
+
+        public async Task<Register> GetUserByEmailAsync(string email)
+        {
+            var query = "SELECT * FROM [dbo].[AspNetUsers] WHERE Email = @Email";
+            var param = new DynamicParameters();
+            param.Add("Email", email);
+            using (var conn = _userContext.CreateConnection())
+            {
+                var user = await conn.QueryFirstOrDefaultAsync<Register>(query, param);
+                return user;
+            }
+        }
+
+        public async Task UpdateAsync(string id, AppUser user)
+        {
+            var query = "UPDATE [dbo].[AspNetUsers] SET [UserName] = @UserName, [Email] = @Email, [TwoFactorEnabled] = @TwoFactorEnabled WHERE [Id] = @Id ";
+            var parameters = new DynamicParameters();
+            parameters.Add("Id", id, DbType.String);
+            parameters.Add("UserName", user.Email, DbType.String);
+            parameters.Add("Email", user.Email, DbType.String);
+            parameters.Add("TwoFactorEnabled", user.TwoFactorEnabled, DbType.Boolean);
+
+            using (var conn = _userContext.CreateConnection())
+            {
+                await conn.ExecuteAsync(query, parameters);
+            }
+        }
     }
 }

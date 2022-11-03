@@ -1,8 +1,8 @@
-﻿using CRUD.Model.Models;
+﻿using CRUD.BusinessLogic.IRepository;
+using CRUD.Model.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -18,12 +18,14 @@ namespace CRUD_API.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
+        private readonly IUserRepositoryAsync _userRepositoryAsync;
 
-        public AuthenticationController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        public AuthenticationController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IUserRepositoryAsync userRepositoryAsync)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
+            _userRepositoryAsync = userRepositoryAsync;
         }
 
         [HttpPost(Name = "Register")]
@@ -36,6 +38,7 @@ namespace CRUD_API.Controllers
             {
                 UserName = register.UserName,
                 Email = register.Email,
+                TwoFactorEnabled = true,
                 SecurityStamp = Guid.NewGuid().ToString()
             };
             var result = await _userManager.CreateAsync(user, register.Password);
@@ -62,7 +65,7 @@ namespace CRUD_API.Controllers
         public async Task<IActionResult> Login([FromBody] Login login)
         {
             var user = await _userManager.FindByNameAsync(login.UserName);
-            if (user != null && await _userManager.CheckPasswordAsync(user, login.Password))
+            if (user != null && await _userManager.CheckPasswordAsync(user, login.Password) && user.TwoFactorEnabled != false)
             {
                 bool emailStatus = await _userManager.IsEmailConfirmedAsync(user);
                 if (emailStatus == false)
@@ -165,6 +168,46 @@ namespace CRUD_API.Controllers
                 response.Result = new();
             }
             return Ok(response);
+        }
+
+        [HttpGet(Name = "GetUserByEmail")]
+        public async Task<IActionResult> GetUserByEmail(string email)
+        {
+            ApiResponse<Register> response = new();
+            try
+            {
+                response.Result = await _userRepositoryAsync.GetUserByEmailAsync(email);
+                response.StatusCode = StatusCodes.Status200OK;
+                response.ErrorMessage = "Success";
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Result = null;
+                response.StatusCode = StatusCodes.Status500InternalServerError;
+                response.ErrorMessage = ex.Message;
+                return Ok(response);
+            }
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> EditProfile([FromBody] Register register)
+        {
+            var userExist = await _userManager.FindByNameAsync(register.UserName);
+            if (userExist == null)
+                return StatusCode(StatusCodes.Status500InternalServerError, new Register { Status = "Error", Message = "User Doesn't Exist." });
+            AppUser user = new AppUser()
+            {
+                UserName = register.UserName,
+                Email = register.Email,
+                TwoFactorEnabled = register.TwoFactorEnabled
+            };
+             await _userRepositoryAsync.UpdateAsync(userExist.Id,user);
+            //if (!result.Succeeded)
+            //    return StatusCode(StatusCodes.Status500InternalServerError, new Register { Status = "Error", Message = "User Updation Faield, Please Try Again." });
+
+            return Ok(new Register { Status = "Success", Message = "User Profile Update Successfully!"});
         }
     }
 }
