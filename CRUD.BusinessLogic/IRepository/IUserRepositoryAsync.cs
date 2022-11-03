@@ -17,5 +17,6 @@ namespace CRUD.BusinessLogic.IRepository
         Task CreateUserLoginAsync(UserLogin user);
         Task<Register> GetUserByEmailAsync(string email);
         Task UpdateAsync(string id, AppUser user);
+        Task<IEnumerable<Register>> GetAllUsersProfileAsync();
     }
 }

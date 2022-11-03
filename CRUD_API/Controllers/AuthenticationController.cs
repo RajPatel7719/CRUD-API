@@ -170,6 +170,24 @@ namespace CRUD_API.Controllers
             return Ok(response);
         }
 
+        [HttpGet(Name = "GetUsersProfile")]
+        public async Task<IActionResult> GetUsersProfile()
+        {
+            ApiResponse<IEnumerable<Register>> response = new();
+            try
+            {
+                response.Result = await _userRepositoryAsync.GetAllUsersProfileAsync();
+                response.StatusCode = StatusCodes.Status200OK;
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.StatusCode = StatusCodes.Status500InternalServerError;
+                response.ErrorMessage = ex.Message;
+                return Ok(response);
+            }
+        }
+
         [HttpGet(Name = "GetUserByEmail")]
         public async Task<IActionResult> GetUserByEmail(string email)
         {
@@ -191,7 +209,6 @@ namespace CRUD_API.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> EditProfile([FromBody] Register register)
         {
             var userExist = await _userManager.FindByNameAsync(register.UserName);

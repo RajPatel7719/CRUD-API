@@ -134,5 +134,15 @@ namespace CRUD.BusinessLogic.Repository
                 await conn.ExecuteAsync(query, parameters);
             }
         }
+
+        public async Task<IEnumerable<Register>> GetAllUsersProfileAsync()
+        {
+            var query = "SELECT * FROM [dbo].[AspNetUsers]";
+            using (var conn = _userContext.CreateConnection())
+            {
+                var users = await conn.QueryAsync<Register>(query);
+                return users.ToList();
+            }
+        }
     }
 }

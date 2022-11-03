@@ -55,12 +55,12 @@ namespace CRUD_API.Controllers
         }
 
         [HttpGet(Name = "GetUserByID")]
-        public async Task<IActionResult> GetUserByID(int id)
+        public IActionResult GetUserByID(int id)
         {
             ApiResponse<User1> response = new();
             try
             {
-                response.Result = await _userRepositoryAsync.GetUserByIdAsync(id);
+                response.Result = _userRepository.GetUserByID(id);
                 response.StatusCode = StatusCodes.Status200OK;
                 return Ok(response);
             }
