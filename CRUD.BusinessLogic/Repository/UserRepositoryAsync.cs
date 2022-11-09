@@ -122,12 +122,13 @@ namespace CRUD.BusinessLogic.Repository
 
         public async Task UpdateAsync(string id, AppUser user)
         {
-            var query = "UPDATE [dbo].[AspNetUsers] SET [UserName] = @UserName, [Email] = @Email, [TwoFactorEnabled] = @TwoFactorEnabled WHERE [Id] = @Id ";
+            var query = "UPDATE [dbo].[AspNetUsers] SET [UserName] = @UserName, [Email] = @Email, [TwoFactorEnabled] = @TwoFactorEnabled, [ProfilePicture] = @ProfilePicture WHERE [Id] = @Id ";
             var parameters = new DynamicParameters();
             parameters.Add("Id", id, DbType.String);
             parameters.Add("UserName", user.Email, DbType.String);
             parameters.Add("Email", user.Email, DbType.String);
             parameters.Add("TwoFactorEnabled", user.TwoFactorEnabled, DbType.Boolean);
+            parameters.Add("ProfilePicture", user.ProfilePicture, DbType.String);
 
             using (var conn = _userContext.CreateConnection())
             {

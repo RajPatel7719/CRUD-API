@@ -1,4 +1,5 @@
 ﻿using CRUD.BusinessLogic.IRepository;
+using CRUD.BusinessLogic.Repository;
 using CRUD.Model.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -19,13 +20,19 @@ namespace CRUD_API.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
         private readonly IUserRepositoryAsync _userRepositoryAsync;
+        private readonly IImageUpload _imageUpload;
 
-        public AuthenticationController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IUserRepositoryAsync userRepositoryAsync)
+        public AuthenticationController(UserManager<AppUser> userManager,
+                                        RoleManager<IdentityRole> roleManager,
+                                        IConfiguration configuration,
+                                        IUserRepositoryAsync userRepositoryAsync,
+                                        IImageUpload imageUpload)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
             _userRepositoryAsync = userRepositoryAsync;
+            _imageUpload = imageUpload;
         }
 
         [HttpPost(Name = "Register")]
@@ -33,18 +40,20 @@ namespace CRUD_API.Controllers
         {
             var userExist = await _userManager.FindByNameAsync(register.UserName);
             if (userExist != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Register { Status = "Error", Message = "User Already Exist." });
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                  new Register { Status = "Error", Message = "User Already Exist." });
             AppUser user = new AppUser()
             {
                 UserName = register.UserName,
                 Email = register.Email,
                 TwoFactorEnabled = true,
-                SecurityStamp = Guid.NewGuid().ToString()
+                ProfilePicture = register.ProfilePicture
             };
             var result = await _userManager.CreateAsync(user, register.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Register { Status = "Error", Message = "User Creation Faield, Please Try Again." });
-            
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                  new Register { Status = "Error", Message = "User Creation Faield, Please Try Again." });
+            //var image = await _imageUpload.SaveImage(register.ProfileImage, user.Email);
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             //var token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
             var token = Base64UrlEncoder.Encode(code);
@@ -206,25 +215,6 @@ namespace CRUD_API.Controllers
                 response.ErrorMessage = ex.Message;
                 return Ok(response);
             }
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> EditProfile([FromBody] Register register)
-        {
-            var userExist = await _userManager.FindByNameAsync(register.UserName);
-            if (userExist == null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Register { Status = "Error", Message = "User Doesn't Exist." });
-            AppUser user = new AppUser()
-            {
-                UserName = register.UserName,
-                Email = register.Email,
-                TwoFactorEnabled = register.TwoFactorEnabled
-            };
-             await _userRepositoryAsync.UpdateAsync(userExist.Id,user);
-            //if (!result.Succeeded)
-            //    return StatusCode(StatusCodes.Status500InternalServerError, new Register { Status = "Error", Message = "User Updation Faield, Please Try Again." });
-
-            return Ok(new Register { Status = "Success", Message = "User Profile Update Successfully!"});
         }
     }
 }

@@ -60,6 +60,7 @@ builder.Services.AddDbContext<UserDBContext>(options =>
 builder.Services.AddSingleton<UserContext>();
 builder.Services.AddTransient<IUserRepositoryAsync, UserRepositoryAsync>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IImageUpload, ImageUpload>();
 
 // For Identity 
 builder.Services.AddIdentity<AppUser, IdentityRole>()
@@ -112,7 +113,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
 
