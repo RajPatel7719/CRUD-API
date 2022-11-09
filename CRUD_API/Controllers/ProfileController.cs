@@ -39,7 +39,8 @@ namespace CRUD_API.Controllers
                 UserName = register.UserName,
                 Email = register.Email,
                 TwoFactorEnabled = register.TwoFactorEnabled,
-                ProfilePicture = register.ProfilePicture == "" ? userExist.ProfilePicture : register.ProfilePicture
+                ProfilePicture = register.ProfilePicture == "" ? userExist.ProfilePicture : register.ProfilePicture,
+                ImageData = register.ImageData
             };
             await _userRepositoryAsync.UpdateAsync(userExist.Id, user);
             

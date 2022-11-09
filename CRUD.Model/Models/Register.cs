@@ -15,6 +15,7 @@ namespace CRUD.Model.Models
 
         public string Password { get; set; } = string.Empty;
         public string ProfilePicture { get; set; } = string.Empty;
+        public byte[]? ImageData { get; set; }
         public bool TwoFactorEnabled { get; set; }
         public string Status { get; set; } = string.Empty;
         public string Message { get; set; } = string.Empty;

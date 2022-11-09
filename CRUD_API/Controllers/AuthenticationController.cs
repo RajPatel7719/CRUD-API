@@ -47,8 +47,10 @@ namespace CRUD_API.Controllers
                 UserName = register.UserName,
                 Email = register.Email,
                 TwoFactorEnabled = true,
-                ProfilePicture = register.ProfilePicture
+                ProfilePicture = register.ProfilePicture,
+                ImageData = register.ImageData
             };
+            user.ProfilePicture = user.Id;
             var result = await _userManager.CreateAsync(user, register.Password);
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError,

@@ -97,7 +97,7 @@ namespace CRUD.BusinessLogic.Repository
 
         public async Task CreateUserLoginAsync(UserLogin user)
         {
-            var procedure = "RegisterUser"; 
+            var procedure = "RegisterUser";
             var parameter = new DynamicParameters();
             parameter.Add("Email", user.Email, DbType.String, ParameterDirection.Input);
             parameter.Add("Pass", user.Password, DbType.String, ParameterDirection.Input);
@@ -122,13 +122,22 @@ namespace CRUD.BusinessLogic.Repository
 
         public async Task UpdateAsync(string id, AppUser user)
         {
-            var query = "UPDATE [dbo].[AspNetUsers] SET [UserName] = @UserName, [Email] = @Email, [TwoFactorEnabled] = @TwoFactorEnabled, [ProfilePicture] = @ProfilePicture WHERE [Id] = @Id ";
+            var query = "";
+            if (user.ImageData.Length > 0)
+            {
+                query = "UPDATE [dbo].[AspNetUsers] SET [UserName] = @UserName, [Email] = @Email, [TwoFactorEnabled] = @TwoFactorEnabled, [ProfilePicture] = @ProfilePicture, [ImageData] = @ImageData WHERE [Id] = @Id ";
+            }
+            else
+            {
+                query = "UPDATE [dbo].[AspNetUsers] SET [UserName] = @UserName, [Email] = @Email, [TwoFactorEnabled] = @TwoFactorEnabled, [ProfilePicture] = @ProfilePicture WHERE [Id] = @Id ";
+            }
             var parameters = new DynamicParameters();
             parameters.Add("Id", id, DbType.String);
             parameters.Add("UserName", user.Email, DbType.String);
             parameters.Add("Email", user.Email, DbType.String);
             parameters.Add("TwoFactorEnabled", user.TwoFactorEnabled, DbType.Boolean);
             parameters.Add("ProfilePicture", user.ProfilePicture, DbType.String);
+            parameters.Add("ImageData", user.ImageData);
 
             using (var conn = _userContext.CreateConnection())
             {
