@@ -19,8 +19,7 @@ namespace CRUD.BusinessLogic.Repository
             try
             {
                 var obj = _userDBContext.Users1.ToList();
-                if (obj != null) return obj;
-                else return null;
+                return obj;
             }
             catch (Exception)
             {
@@ -89,8 +88,7 @@ namespace CRUD.BusinessLogic.Repository
             try
             {
                 var obj = _userDBContext.Users1.Where(u => u.Id == id).AsNoTracking().FirstOrDefault();
-                if (obj != null) return obj;
-                else return null;
+                return obj;
             }
             catch (Exception)
             {

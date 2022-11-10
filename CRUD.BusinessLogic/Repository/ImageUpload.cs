@@ -32,20 +32,11 @@ namespace CRUD.BusinessLogic.Repository
                             Directory.CreateDirectory(_configuration["ImageFilePath"]);
                         }
 
-                        if (!File.Exists(imagePath))
-                        {
-                            using (FileStream fileStream = new(imagePath, FileMode.Create))
-                            {
-                                await imageFile.CopyToAsync(fileStream);
-                            }
-                        }
-                        else
-                        {
+                        if (File.Exists(imagePath))
                             File.Delete(imagePath);
-                            using (FileStream fileStream = new(imagePath, FileMode.Create))
-                            {
-                                await imageFile.CopyToAsync(fileStream);
-                            }
+                        using (FileStream fileStream = new(imagePath, FileMode.Create))
+                        {
+                            await imageFile.CopyToAsync(fileStream);
                         }
                     }
                 }

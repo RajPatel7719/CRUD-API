@@ -77,3 +77,8 @@ G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\refint\CRUD_API.dll
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\CRUD_API.pdb
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\CRUD_API.genruntimeconfig.cache
 G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\ref\CRUD_API.dll
+G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\staticwebassets\msbuild.CRUD_API.Microsoft.AspNetCore.StaticWebAssets.props
+G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\staticwebassets\msbuild.build.CRUD_API.props
+G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.CRUD_API.props
+G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.CRUD_API.props
+G:\Training\ASP.NET CORE MVC\API\CRUD_API\obj\Debug\net6.0\staticwebassets.pack.json
