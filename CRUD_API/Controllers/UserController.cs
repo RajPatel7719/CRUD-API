@@ -3,6 +3,7 @@ using CRUD.BusinessLogic.IRepository;
 using CRUD.DataAccess;
 using CRUD.Model.Models;
 using CRUD.Model.ModelsDTO;
+using CRUD_API.Const;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -82,13 +83,13 @@ namespace CRUD_API.Controllers
                     int result = _userRepository.AddOrUpdateUser(user1);
                     if (result != 1)
                     {
-                        response.ErrorMessage = "Error";
+                        response.ErrorMessage = Constants.StatusError;
                         response.StatusCode = StatusCodes.Status404NotFound;
                         response.Result = new();
                     }
                     else
                     {
-                        response.ErrorMessage = "SUCCESS";
+                        response.ErrorMessage = Constants.StatusSuccess;
                         response.StatusCode = StatusCodes.Status200OK;
                         response.Result = new();
                     }
@@ -110,13 +111,13 @@ namespace CRUD_API.Controllers
                 int result = _userRepository.DeleteUser(id);
                 if (result != 1)
                 {
-                    response.ErrorMessage = "Error";
+                    response.ErrorMessage = Constants.StatusError;
                     response.StatusCode = StatusCodes.Status404NotFound;
                     response.Result = new();
                 }
                 else
                 {
-                    response.ErrorMessage = "SUCCESS";
+                    response.ErrorMessage = Constants.StatusSuccess;
                     response.StatusCode = StatusCodes.Status200OK;
                     response.Result = new();
                 }
@@ -152,13 +153,13 @@ namespace CRUD_API.Controllers
                     int result = _userRepository.AddOrUpdateUser(mappedUser);
                     if (result != 1)
                     {
-                        response.ErrorMessage = "Error";
+                        response.ErrorMessage = Constants.StatusError;
                         response.StatusCode = StatusCodes.Status404NotFound;
                         response.Result = new();
                     }
                     else
                     {
-                        response.ErrorMessage = "SUCCESS";
+                        response.ErrorMessage = Constants.StatusSuccess;
                         response.StatusCode = StatusCodes.Status200OK;
                         response.Result = new();
                     }

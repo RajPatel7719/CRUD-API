@@ -1,5 +1,6 @@
 ﻿using CRUD.BusinessLogic.IRepository;
 using CRUD.Model.Models;
+using CRUD_API.Const;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +26,7 @@ namespace CRUD_API.Controllers
             var image = await _imageUpload.SaveImage(user.ProfileImage, user.UserName);
             user.ProfilePicture = image;
             await EditProfile(user);
-            return Ok(new Register { Message = "Upload Successfully", Status = "Success"});
+            return Ok(new Register { Message = Constants.ImageUploadSuccess, Status = Constants.StatusSuccess});
         }
 
         [HttpPost]
@@ -33,7 +34,7 @@ namespace CRUD_API.Controllers
         {
             var userExist = await _userManager.FindByNameAsync(register.UserName);
             if (userExist == null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Register { Status = "Error", Message = "User Doesn't Exist." });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Register { Status = Constants.StatusSuccess, Message = "User Doesn't Exist." });
             AppUser user = new AppUser()
             {
                 UserName = register.UserName,
@@ -44,7 +45,7 @@ namespace CRUD_API.Controllers
             };
             await _userRepositoryAsync.UpdateAsync(userExist.Id, user);
             
-            return Ok(new Register { Status = "Success", Message = "User Profile Update Successfully!" });
+            return Ok(new Register { Status = Constants.StatusSuccess, Message = Constants.UserProfileUpdateSuccess });
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CRUD.Model.Models;
+using CRUD_API.Const;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -22,16 +23,16 @@ namespace CRUD_API.Controllers
         {
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
-                return Ok(new Response { Message = "User Not Found", Status = "Error" });
+                return Ok(new Response { Message = Constants.UserNotFound, Status = Constants.StatusError });
             var code = Base64UrlEncoder.Decode(token);
             var result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
-                return Ok(new Response { Message = "ConfirmEmail", Status = "Success" });
+                return Ok(new Response { Message = Constants.Message.EmailConfirmed, Status = Constants.StatusSuccess });
             }
             else
             {
-                return Ok(new Response { Message = "Email Is Not Confirm", Status = "Error" });
+                return Ok(new Response { Message = Constants.Message.EmailNotConfirm, Status = Constants.StatusError });
             }
         }
     }

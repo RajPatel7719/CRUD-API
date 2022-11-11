@@ -1,6 +1,7 @@
 ﻿using CRUD.BusinessLogic.IRepository;
 using CRUD.BusinessLogic.Repository;
 using CRUD.Model.Models;
+using CRUD_API.Const;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -41,7 +42,7 @@ namespace CRUD_API.Controllers
             var userExist = await _userManager.FindByNameAsync(register.UserName);
             if (userExist != null)
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                                  new Register { Status = "Error", Message = "User Already Exist." });
+                                  new Register { Status = Constants.StatusError, Message = Constants.UserAlreadyExists });
             AppUser user = new AppUser()
             {
                 UserName = register.UserName,
@@ -54,7 +55,7 @@ namespace CRUD_API.Controllers
             var result = await _userManager.CreateAsync(user, register.Password);
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                                  new Register { Status = "Error", Message = "User Creation Faield, Please Try Again." });
+                                  new Register { Status = Constants.StatusError, Message = Constants.UserCreationFaield });
             //var image = await _imageUpload.SaveImage(register.ProfileImage, user.Email);
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             //var token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -64,12 +65,12 @@ namespace CRUD_API.Controllers
             bool emailResponse = emailHelper.SendEmail(user.Email, token);
 
             if (emailResponse)
-                new Register { Status = "Success", Message = "User Created Successfully...!" };
+                new Register { Status = Constants.StatusSuccess, Message = Constants.UserCreateSuccess };
             else
             {
                 // log email failed 
             }
-            return Ok(new Register { Status = "Success", Message = "User Created Successfully...!" });
+            return Ok(new Register { Status = Constants.StatusSuccess, Message = Constants.UserCreateSuccess });
         }
 
         [HttpPost(Name = "Login")]
@@ -83,8 +84,8 @@ namespace CRUD_API.Controllers
                 {
                     return Ok(new Login
                     {
-                        Status = "Error",
-                        Message = "Email is unconfirmed, please confirm it first"
+                        Status = Constants.StatusError,
+                        Message = Constants.Message.EmailNotConfirm
                     });
                 }
                 var userRoles = await _userManager.GetRolesAsync(user);
@@ -112,12 +113,12 @@ namespace CRUD_API.Controllers
 
                 return Ok(new Login
                 {
-                    Status = "Success",
+                    Status = Constants.StatusSuccess,
                     Token = new JwtSecurityTokenHandler().WriteToken(token),
                     Message = token.ValidTo.ToString()
                 });
             }
-            return Unauthorized(new Response { Status = "Unauthorized", Message = "You are Not Authorized", Token = "" });
+            return Unauthorized(new Response { Status = Constants.StatusUnauthorized, Message = Constants.UserNotAuthorized, Token = "" });
         }
 
         [HttpPost]
@@ -126,7 +127,7 @@ namespace CRUD_API.Controllers
         {
             var userExists = await _userManager.FindByNameAsync(model.UserName);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = Constants.StatusError, Message = Constants.UserAlreadyExists });
 
             AppUser user = new AppUser()
             {
@@ -136,7 +137,7 @@ namespace CRUD_API.Controllers
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = Constants.StatusError, Message = Constants.UserCreationFaield });
 
             if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
@@ -148,7 +149,7 @@ namespace CRUD_API.Controllers
                 await _userManager.AddToRoleAsync(user, UserRoles.Admin);
             }
 
-            return Ok(new Response { Status = "Success", Message = "User created successfully!" });
+            return Ok(new Response { Status = Constants.StatusSuccess, Message = Constants.UserCreateSuccess });
         }
 
         [HttpPost]
@@ -161,20 +162,20 @@ namespace CRUD_API.Controllers
                 IdentityResult result = await _userManager.DeleteAsync(user);
                 if (result.Succeeded)
                 {
-                    response.ErrorMessage = "SUCCESS";
+                    response.ErrorMessage = Constants.StatusSuccess;
                     response.StatusCode = StatusCodes.Status200OK;
                     response.Result = new();
                 }
                 else
                 {
-                    response.ErrorMessage = "Error";
+                    response.ErrorMessage = Constants.StatusError;
                     response.StatusCode = StatusCodes.Status500InternalServerError;
                     response.Result = new();
                 }
             }
             else
             {
-                response.ErrorMessage = "User Not Found";
+                response.ErrorMessage = Constants.UserNotFound;
                 response.StatusCode = StatusCodes.Status404NotFound;
                 response.Result = new();
             }
@@ -207,7 +208,7 @@ namespace CRUD_API.Controllers
             {
                 response.Result = await _userRepositoryAsync.GetUserByEmailAsync(email);
                 response.StatusCode = StatusCodes.Status200OK;
-                response.ErrorMessage = "Success";
+                response.ErrorMessage = Constants.StatusSuccess;
                 return Ok(response);
             }
             catch (Exception ex)
