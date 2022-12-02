@@ -36,7 +36,12 @@ namespace CRUD_API.Controllers
             _imageUpload = imageUpload;
         }
 
-        [HttpPost(Name = "Register")]
+		/// <summary>Registers the specified register.</summary>
+		/// <param name="register">The register.</param>
+		/// <returns>
+		///   <br />
+		/// </returns>
+		[HttpPost(Name = "Register")]
         public async Task<IActionResult> Register([FromBody] Register register)
         {
             var userExist = await _userManager.FindByNameAsync(register.UserName);
@@ -73,7 +78,12 @@ namespace CRUD_API.Controllers
             return Ok(new Register { Status = Constants.StatusSuccess, Message = Constants.UserCreateSuccess });
         }
 
-        [HttpPost(Name = "Login")]
+		/// <summary>Logins the specified login.</summary>
+		/// <param name="login">The login.</param>
+		/// <returns>
+		///   <br />
+		/// </returns>
+		[HttpPost(Name = "Login")]
         public async Task<IActionResult> Login([FromBody] Login login)
         {
             var user = await _userManager.FindByNameAsync(login.UserName);
